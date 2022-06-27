@@ -33,7 +33,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         EmployeeIdTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        SearchButton = new javax.swing.JButton();
         EmployeeNameTextField = new javax.swing.JTextField();
         EmployeePostTextField = new javax.swing.JTextField();
         SalaryTextField = new javax.swing.JTextField();
@@ -50,6 +50,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(153, 153, 153));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -61,7 +62,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -79,13 +80,25 @@ public class SearchEmp_Food extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SearchButton.setBackground(new java.awt.Color(204, 204, 204));
+        SearchButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        SearchButton.setText("Search");
+        SearchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SearchButtonActionPerformed(evt);
             }
         });
+
+        EmployeeNameTextField.setEditable(false);
+
+        EmployeePostTextField.setEditable(false);
+
+        SalaryTextField.setEditable(false);
+
+        JoiningDateTextField.setEditable(false);
+
+        BehaviourRatingTextField.setEditable(false);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
@@ -128,7 +141,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))
+                                .addComponent(SearchButton))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -171,7 +184,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(SearchButton))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -220,14 +233,13 @@ public class SearchEmp_Food extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmployeeIdTextFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
                 // TODO add your handling code here:
         String EmployeeId = EmployeeIdTextField.getText();
         String query = "select *from employeedetails where EmployeeID = '" + EmployeeId+"'";
         try{
             ResultSet rs = (ResultSet) RestaurentQuerySystem.queryExecute(query);
             if(rs.next()){
-
                 EmployeeNameTextField.setText(rs.getString("EmployeeName"));
                 EmployeePostTextField.setText(rs.getString("EmployeePost"));
                 JoiningDateTextField.setText(rs.getString("EmployeeJoiningDate"));
@@ -235,9 +247,8 @@ public class SearchEmp_Food extends javax.swing.JFrame {
                 BehaviourRatingTextField.setText(rs.getString("EmployeeRating"));
             }
         }catch(Exception e){
-            
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SearchButtonActionPerformed
  
     /**
      * @param args the command line arguments
@@ -268,6 +279,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new SearchEmp_Food().setVisible(true);
             }
@@ -281,7 +293,7 @@ public class SearchEmp_Food extends javax.swing.JFrame {
     private javax.swing.JTextField EmployeePostTextField;
     private javax.swing.JTextField JoiningDateTextField;
     private javax.swing.JTextField SalaryTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton SearchButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
